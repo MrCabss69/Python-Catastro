@@ -133,7 +133,6 @@ class Catastro:
                             lcons = bico['lcons']
                             if 'cons' in lcons:
                                 cons = lcons['cons']
-                                # Si 'cons' no es una lista, conviértela en una lista con un solo elemento
                                 if not isinstance(cons, list):
                                     cons = [cons]
                                 construcciones = [
