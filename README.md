@@ -31,7 +31,7 @@ La clase `Catastro` proporciona varios métodos para recuperar y procesar datos 
 - `obtener_propiedad(provincia, pueblo, tipo_calle, nombre_calle, numero)`: Devuelve un diccionario que contiene los detalles de una propiedad dada su dirección.
 - `obtener_propiedades_en_calle(provincia, pueblo, tipo_calle, nombre_calle, numero_max)`: Devuelve un DataFrame que contiene los detalles de todas las propiedades en una calle dada.
 - `obtener_propiedades_coordenadas(long=None, lat=None, srs='EPSG:4326')`: Devuelve un DataFrame que contiene los detalles de todas las propiedades dentro de un conjunto dado de coordenadas.
-- `obtener_info_rc(provincia, municipio, rc)`: Devuelve un DataFrame que contiene los detalles de una propiedad dado su código de referencia Catastro.
+- `obtener_info_rc(provincia, municipio, rc)`: Devuelve un DataFrame que contiene los detalles de una propiedad dado su código de referencia catastral.
 - `obtener_codigos_provincias()`: Devuelve un diccionario que mapea los códigos de provincias a los nombres de provincias.
 - `obtener_codigos_municipios()`: Devuelve un diccionario que mapea los códigos de municipios a los nombres de municipios.
 
@@ -50,16 +50,16 @@ provincias = provincias['Nombre'].to_list()
 municipios = gestor.obtener_municipios(provincias[0])
 municipios = municipios['Nombre'].to_list()
 
-calles = gestor.obtener_calles('Toledo', 'Guadamur')
-calles = calles[(calles['Tipo'] == 'CL') | (calles['Tipo'] == 'AV')]
+calles = gestor.obtener_calles('Toledo', 'Argés')
+calles = calles[(calles['Tipo'] == 'CL') | (calles['Tipo'] == 'AV')] # CL = CALLE, AV = AVENIDA; CONSULTAR DOCUMENTACIÓN.
 nombres, tipos = calles['Nombre'].to_list(), calles['Tipo'].to_list()
 for i in range(min(len(nombres), len(tipos))):
     print(f"Dirección {i}: {nombres[i]} , tipo: {tipos[i]}")
 ```
 
-## Aplicaciones Posibles
+## Aplicaciones
 
-El módulo Catastro puede ser útil para una variedad de aplicaciones que necesiten interactuar con los datos del Catastro Español. Algunas posibles aplicaciones podrían incluir:
+Este módulo pretende ser útil para interactuar con la API del Catastro Español, y extraer los datos en formato de dataframe. Algunas posibles aplicaciones incluyen:
 
 - Crear aplicaciones de mapeo y visualización de datos de propiedades.
 - Realizar análisis de datos geoespaciales para investigaciones urbanísticas o de mercado inmobiliario.
